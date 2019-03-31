@@ -1,0 +1,271 @@
+<!--
+Mobile web development 
+Assignment 2
+Created by: Majid Tooranisama, 03/10/2019
+email:      mtooranisama5070@conestogac.on.ca
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>MT Feedback A2</title>
+        <!--jQuery-->
+        <script src="js/lib/jquery-2.1.4.js"></script>
+        <!--jQuery mobile-->
+        <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+        <!--jQuery mobile css-->
+        <link rel="stylesheet" type="text/css" href="css/lib/jquery.mobile-1.4.5.css">
+		<!--my style css-->
+        <link rel="stylesheet" type="text/css" href="css/MTmystyle.css">
+        <!--jQuery validation library-->
+        <script src="js/lib/jquery.validate.js"></script>
+		<!--jQuery database-->
+        <script src="js/MTdatabase.js"></script>
+		<!--jQuery DAL-->
+        <script src="js/MTfeedbackDAL.js"></script>
+		<!--jQuery util-->
+        <script src="js/MTutil.js"></script>
+		<!--jQuery global-->
+        <script src="js/MTglobal.js"></script>
+    </head>
+	<body>
+        <!--Home page-->
+        <div data-role="page" id="MTHomepage">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>MT Feedback A2</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#MTHomepage" data-icon="home" data-theme="a" class="ui-btn-active ui-state-persist">Home</a>
+                        </li>
+                        <li><a href="#MTAddFeedbackPage" data-icon="plus" data-theme="a">Add</a>
+                        </li>
+                        <li><a href="#MTViewFeedbackPage" data-icon="grid" data-theme="a">Reviews</a>
+                        </li>
+                        <li><a href="#MTSettingsPage" data-icon="gear" data-theme="a">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <h2 align="center">Majid Tooranisama's Feedback A2 App</h2>              
+                <h3></h3>
+                <p>Welcome to the Majid Tooranisama's Feedback A2 app.
+				A prototype designed for mobile programming class.
+				This is the first iteration of the app to keep track of 
+				different places you visited along with your reviews.</p>
+				<div align="center">
+                    <img src="img/MT-icon.png" width="80%" alt="Feedback">
+                </div>
+                <p>Please feel free to conect me if you have any suggestions!</p>				
+                <a href="tel:1234567890" data-role="button" data-icon="plus" data-theme="a">Call: 123-456-7890</a>
+                <a href="mailto:mtooranisama5070@conestogac.on.ca" data-role="button" data-icon="plus" data-theme="a">mtooranisama5070@conestogac.on.ca</a>
+                <p>Website:<p>
+				<a href="https://www.conestogac.on.ca" data-role="button" data-icon="plus" data-theme="a">Conestoga College</a>                     
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy; 2019 Majid Tooranisama</h4>
+            </footer>
+        </div>
+        <!--Add Feedback page-->
+        <div data-role="page" id="MTAddFeedbackPage">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Add a Feedback</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#MTHomepage" data-icon="home" data-theme="a">Home</a>
+                        </li>
+                        <li><a href="#MTAddFeedbackPage" data-icon="plus" data-theme="a" class="ui-btn-active ui-state-persist">Add</a>
+                        </li>
+                        <li><a href="#MTViewFeedbackPage" data-icon="grid" data-theme="a">Reviews</a>
+                        </li>
+                        <li><a href="#MTSettingsPage" data-icon="gear" data-theme="a">Settings</a>
+                        </li>                     
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <div id="mainDiv">                   
+                    <form id="MTAddForm" name="MTAddForm" data-ajax="false">
+                        <label for="MTName">Business Name: </label>
+                        <input type="text" id="MTName" name="MTName" data-clear-btn="true">
+							   					    
+					    <label for="MTType">Type:</label>
+						<select name="MTType" id="MTType" data-native-menu="false">
+							<option value="1" default>Other</option>
+							<option value="2">Asian</option>
+							<option value="3">Canadian</option>							
+						</select>
+
+                        <label for="MTEmail">Reviewer Email: </label>
+                        <input type="text" id="MTEmail" name="MTEmail" data-clear-btn="true">
+
+                        <label for="MTComment">Reviewer Comment: </label>
+                        <textarea id="MTComment" name="MTComment" data-clear-btn="true"></textarea>
+
+                        <label for="MTReviewDate">Review Date:</label>
+                        <input id="MTReviewDate" name="MTReviewDate" type="date" data-clear-btn="true">
+
+						<label for="MTAddRating">Do you want to add your ratings? </label>
+						<input type="checkbox" id="MTAddRating" name="MTAddRating" data-clear-btn="true">
+
+                        <div id="MTRating" style="display: none;">
+							<label for="MTFoodRating">Food Quality(0-5): </label>
+							<input type="number" id="MTFoodRating" name="MTFoodRating" data-clear-btn="true" value="0">
+							<label for="MTServiceRating">Service(0-5): </label>
+							<input type="number" id="MTServiceRating" name="MTServiceRating" data-clear-btn="true" value="0">
+							<label for="MTValueRating">Value(0-5): </label>
+							<input type="number" id="MTValueRating" name="MTValueRating" data-clear-btn="true" value="0">
+							<label for="MTOverallRating">Overall Rating(calculated): </label>
+							<input type="text" id="MTOverallRating" name="MTOverallRating"
+                                data-clear-btn="true" value="0"  disabled>
+						</div>																			   
+                        <button type="button" data-inline="true" id="MTSave" name="MTSave" class="ui-btn-active">
+                            Save
+                        </button>                      
+                    </form>
+                </div>                
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy; 2019 Majid Tooranisama</h4>
+            </footer>
+        </div>
+        <!--Review page-->
+        <div data-role="page" id="MTViewFeedbackPage">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>List of Reviews</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#MTHomepage" data-icon="home" data-theme="a">Home</a>
+                        </li>
+                        <li><a href="#MTAddFeedbackPage" data-icon="plus" data-theme="a">Add</a>
+                        </li>						
+                        <li><a href="#MTViewFeedbackPage" data-icon="grid" data-theme="a" class="ui-btn-active ui-state-persist">Reviews</a>
+                        </li>						
+                        <li><a href="#MTSettingsPage" data-icon="gear" data-theme="a">Settings</a>
+                        </li>                      
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <ul id="MTFeedbackList" data-role="listview" class="ui-listview-inset">
+                    <li>
+                        <a href="#MTEditFeedbackPage" data-theme="a">                            
+                            <h3>Business Name: My IT Company</h3>
+                            <p>Reviewer Email: majidtoorani@outlook.com</p>
+							<p>Comments: Good Services!</p>
+							<p>Overal Rating: 95%</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#MTEditFeedbackPage" data-theme="a">
+                            <h3>Business Name: API Company</h3>
+                            <p>Reviewer Email: apicompany@gmail.com</p>
+							<p>Comments: Beyond the expectation!</p>
+							<p>Overal Rating: 100%</p>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy; 2019 Majid Tooranisama</h4>
+            </footer>
+        </div>
+		<!--Modify Feedback page-->
+        <div data-role="page" id="MTEditFeedbackPage">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Modify Feedback</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#MTHomepage" data-icon="home" data-theme="a">Home</a>
+                        </li>
+                        <li><a href="#MTAddFeedbackPage" data-icon="plus" data-theme="a">Add</a>
+                        </li>
+                        <li><a href="#MTViewFeedbackPage" data-icon="grid" data-theme="a" class="ui-btn-active ui-state-persist">Reviews</a>
+                        </li>
+                        <li><a href="#MTSettingsPage" data-icon="gear" data-theme="a">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <div id="mainModifyDiv">
+                    <form id="MTModifyForm" name="MTModifyForm" data-ajax="false">
+                        <label for="MTModifyName">Business Name: </label>
+                        <input type="text" id="MTModifyName" name="MTModifyName" data-clear-btn="true" placeholder="My IT Company">
+
+                        <label for="MTModifyType">Type:</label>
+                        <select name="MTModifyType" id="MTModifyType" data-native-menu="false">
+                            <option value="1" default>Other</option>
+                            <option value="2">Asian</option>
+                            <option value="3">Canadian</option>
+                        </select>
+
+                        <label for="MTModifyEmail">Reviewer Email: </label>
+                        <input type="text" id="MTModifyEmail" name="MTModifyEmail" data-clear-btn="true" placeholder="majidtoorani@outlook.com">
+
+                        <label for="MTModifyComment">Reviewer Comment: </label>
+                        <textarea id="MTModifyComment" name="MTModifyComment" data-clear-btn="true" >Good Services!</textarea>
+
+                        <label for="MTModifyReviewDate">Review Date:</label>
+                        <input id="MTModifyReviewDate" name="MTModifyReviewDate" type="date" data-clear-btn="true">
+
+                        <label for="MTModifyRating">Do you want to add your ratings? </label>
+                        <input type="checkbox" id="MTModifyRating" name="MTModifyRating" data-clear-btn="true">
+                        <div id="MTEditRating" style="display: none;">
+                            <label for="MTModifyFoodRating">Food Quality(0-5): </label>
+                            <input type="number" id="MTModifyFoodRating" name="MTModifyFoodRating" data-clear-btn="true" value="0">
+                            <label for="MTModifyServiceRating">Service(0-5): </label>
+                            <input type="number" id="MTModifyServiceRating" name="MTModifyServiceRating" data-clear-btn="true" value="0">
+                            <label for="MTModifyValueRating">Value(0-5): </label>
+                            <input type="number" id="MTModifyValueRating" name="MTModifyValueRating" data-clear-btn="true" value="0">
+                            <label for="MTModifyOverallRating">Overall Rating(calculated): </label>
+                            <input type="text" id="MTModifyOverallRating" name="MTModifyOverallRating" data-clear-btn="true" value="0"  disabled>
+                        </div>
+						<div data-role="controlgroup" data-type="horizontal">	   
+							<button type="button" data-inline="true" id="MTCancel" name="MTCancel" style="background-color:yellow">
+								Cancel
+							</button>
+							<button type="button" data-inline="true" id="MTDelete" name="MTDelete" data-theme="b">
+								Delete
+							</button>
+							<button type="button" data-inline="true" id="MTUpdate" name="MTUpdate" class="ui-btn-active">
+								Update
+							</button>
+						</div>
+                    </form>
+                </div>                
+            </section>
+			<footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy; 2019 Majid Tooranisama</h4>
+            </footer>
+        </div>
+        <!--Settings page-->
+        <div data-role="page" id="MTSettingsPage">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Settings</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#MTHomepage" data-icon="home" data-theme="a">Home</a>
+                        </li>
+                        <li><a href="#MTAddFeedbackPage" data-icon="plus" data-theme="a">Add</a>
+                        </li>
+                        <li><a href="#MTViewFeedbackPage" data-icon="grid" data-theme="a">Reviews</a>
+                        </li>
+                        <li><a href="#MTSettingsPage" data-icon="gear" data-theme="a" class="ui-btn-active ui-state-persist">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+				<label for="MTDefaultEmail">Default reviewer Email: </label>
+				<input type="text" id="MTDefaultEmail" name="MTDefaultEmail"  data-clear-btn="true" value="mtooranisama5070@conestogac.on.ca">
+                <button type="button" id="MTSaveDefault" name="MTSaveDefault" class="ui-btn-active">Save Defaults</button>
+				<button type="button" id="MTClearDatabase" name="MTClearDatabase" data-theme="b">Clear Database</button>
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy; 2019 Majid Tooranisama</h4>
+            </footer>
+        </div>                            
+    </body>
+</html>
