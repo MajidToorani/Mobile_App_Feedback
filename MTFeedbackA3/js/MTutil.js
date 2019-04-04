@@ -2,71 +2,12 @@
  * File Name: MTutil.js
  *
  * Revision History:
- *       Majid Tooranisama, 2019-03-10 : Created
+ *       Majid Tooranisama, 2019-04-11 : Created
  */
 
 function GetOverallRating(quality, service, value) {
     var averageRating = (quality + service + value) * 100/15;
     return averageRating.toFixed(2);
-}
-
-function MTcalculateRatingAdd(){
-    var quality = parseInt($("#MTFoodRating").val());
-    var service = parseInt($("#MTServiceRating").val());
-    var value = parseInt($("#MTValueRating").val());
-
-    var averageRating = GetOverallRating(quality,service,value) +"%";
-    $("#MTOverallRating").val(averageRating);
-}
-
-function MTcalculateRatingEdit(){
-    var quality = parseInt($("#MTModifyFoodRating").val());
-    var service = parseInt($("#MTModifyServiceRating").val());
-    var value = parseInt($("#MTModifyValueRating").val());
-
-    var averageRating = GetOverallRating(quality,service,value) +"%";
-    $("#MTModifyOverallRating").val(averageRating);
-}
-
-function MTSave() {
-    if(DoValidate_MTAddForm())
-    {
-        console.info("Add Feedback's Form Validation is successful.");
-    }
-    else
-    {
-        console.error("Add Feedback's Form Validation is failed.");
-    }
-}
-
-function MTUpdate() {
-    if(DoValidate_MTModifyForm())
-    {
-        console.info("Modify Feedback's Form Validation is successful.");
-    }
-    else
-    {
-        console.error("Modify Feedback's Form Validation is failed.")
-    }
-}
-
-function MTSaveDefaultEmail(){
-    var DefaultEmail = $("#MTDefaultEmail").val();
-
-    MTInitStorage();
-    MTAddtoStorage();
-
-    function MTInitStorage(){
-        localStorage.setItem("DefaultEmail", DefaultEmail);
-    }
-    function MTAddtoStorage(){
-        if (localStorage.getItem("DefaultEmail")){
-            window.alert("Default reviewer email saved:"+ localStorage.getItem("DefaultEmail"));
-        }
-        else{
-            window.alert("Saving default reviewer email failed")
-        }
-    }
 }
 
 function DoValidate_MTAddForm(){

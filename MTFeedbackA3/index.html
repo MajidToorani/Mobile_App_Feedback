@@ -1,7 +1,7 @@
 <!--
 Mobile web development 
-Assignment 2
-Created by: Majid Tooranisama, 03/10/2019
+Assignment 3
+Created by: Majid Tooranisama, 04/11/2019
 email:      mtooranisama5070@conestogac.on.ca
 -->
 
@@ -9,7 +9,7 @@ email:      mtooranisama5070@conestogac.on.ca
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <title>MT Feedback A2</title>
+        <title>MT Feedback A3</title>
         <!--jQuery-->
         <script src="js/lib/jquery-2.1.4.js"></script>
         <!--jQuery mobile-->
@@ -22,6 +22,8 @@ email:      mtooranisama5070@conestogac.on.ca
         <script src="js/lib/jquery.validate.js"></script>
 		<!--jQuery database-->
         <script src="js/MTdatabase.js"></script>
+        <!--jQuery facade-->
+        <script src="js/MTfacade.js"></script>
 		<!--jQuery DAL-->
         <script src="js/MTfeedbackDAL.js"></script>
 		<!--jQuery util-->
@@ -33,7 +35,7 @@ email:      mtooranisama5070@conestogac.on.ca
         <!--Home page-->
         <div data-role="page" id="MTHomepage">
             <header data-role="header" data-position="fixed" data-theme="b">
-                <h1>MT Feedback A2</h1>
+                <h1>MT Feedback A3</h1>
                 <div data-role="navbar" data-iconpos="top">
                     <ul>
                         <li><a href="#MTHomepage" data-icon="home" data-theme="a" class="ui-btn-active ui-state-persist">Home</a>
@@ -48,9 +50,9 @@ email:      mtooranisama5070@conestogac.on.ca
                 </div>
             </header>
             <section data-role="content">
-                <h2 align="center">Majid Tooranisama's Feedback A2 App</h2>              
+                <h2 align="center">Majid Tooranisama's Feedback A3 App</h2>
                 <h3></h3>
-                <p>Welcome to the Majid Tooranisama's Feedback A2 app.
+                <p>Welcome to the Majid Tooranisama's Feedback A3 app.
 				A prototype designed for mobile programming class.
 				This is the first iteration of the app to keep track of 
 				different places you visited along with your reviews.</p>
@@ -92,9 +94,6 @@ email:      mtooranisama5070@conestogac.on.ca
 							   					    
 					    <label for="MTType">Type:</label>
 						<select name="MTType" id="MTType" data-native-menu="false">
-							<option value="1" default>Other</option>
-							<option value="2">Asian</option>
-							<option value="3">Canadian</option>							
 						</select>
 
                         <label for="MTEmail">Reviewer Email: </label>
@@ -107,7 +106,7 @@ email:      mtooranisama5070@conestogac.on.ca
                         <input id="MTReviewDate" name="MTReviewDate" type="date" data-clear-btn="true">
 
 						<label for="MTAddRating">Do you want to add your ratings? </label>
-						<input type="checkbox" id="MTAddRating" name="MTAddRating" data-clear-btn="true">
+						<input type="checkbox" data-role="checkbox" id="MTAddRating" name="MTAddRating">
 
                         <div id="MTRating" style="display: none;">
 							<label for="MTFoodRating">Food Quality(0-5): </label>
@@ -196,9 +195,6 @@ email:      mtooranisama5070@conestogac.on.ca
 
                         <label for="MTModifyType">Type:</label>
                         <select name="MTModifyType" id="MTModifyType" data-native-menu="false">
-                            <option value="1" default>Other</option>
-                            <option value="2">Asian</option>
-                            <option value="3">Canadian</option>
                         </select>
 
                         <label for="MTModifyEmail">Reviewer Email: </label>
@@ -211,7 +207,7 @@ email:      mtooranisama5070@conestogac.on.ca
                         <input id="MTModifyReviewDate" name="MTModifyReviewDate" type="date" data-clear-btn="true">
 
                         <label for="MTModifyRating">Do you want to add your ratings? </label>
-                        <input type="checkbox" id="MTModifyRating" name="MTModifyRating" data-clear-btn="true">
+                        <input type="checkbox" data-role="checkbox" id="MTModifyRating" name="MTModifyRating">
                         <div id="MTEditRating" style="display: none;">
                             <label for="MTModifyFoodRating">Food Quality(0-5): </label>
                             <input type="number" id="MTModifyFoodRating" name="MTModifyFoodRating" data-clear-btn="true" value="0">
